@@ -1,0 +1,24 @@
+.Layout{
+    background-color:steelblue;
+    width: auto;
+    height: 1000px;
+    
+}
+
+.Home {
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 18px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color:grey;
+  background-color:lightblue;
+  border: none;
+  border-radius: 15px;
+  }
+  
+  .Home:hover {
+    color: white;
+  }
