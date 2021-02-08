@@ -2,15 +2,20 @@ import React, { useEffect, useRef, useState } from "react"
 import "./Interface.css"
 import mapboxgl from "mapbox-gl"
 import UserInput from "./userInput"
+import MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions'
+import '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css'
 
 const Interface = () => {
 
     mapboxgl.accessToken = 'pk.eyJ1IjoicHJhcHVsMDIiLCJhIjoiY2trdGY2dXB6MG1ueDJ2cGxha25xcW84ayJ9.hOe6WZWmXxyNH6iJPDvXMQ'
 
+    
+
     const interfaceRef = useRef(null)
 
     const [longitude, setLongitude] = useState(0)
     const [latitude, setLatitude] = useState(0)
+    const [zoom, setZoom] = useState(5)
 
     
 
@@ -19,15 +24,14 @@ const Interface = () => {
     })
 
     function successPosition(position){
-        console.log(position)
-        console.log(position.coords)
             setLongitude(position.coords.longitude)
             setLatitude(position.coords.latitude)
+
     }
 
     function errorPosition(){
-        setLongitude(20.1234)
-        setLatitude(15.1234)
+        setLongitude(19.075984)
+        setLatitude(72.877656)
         
     }
 
@@ -35,15 +39,23 @@ const Interface = () => {
         const map = new mapboxgl.Map({
         container: interfaceRef.current,
         style: "mapbox://styles/mapbox/streets-v11",
-        center: [latitude, longitude]
+        center: [longitude, latitude],
+        zoom: zoom
         })
 
-        map.on("move", () => {
-            setLongitude(map.getCenter().longitude);
-            setLatitude(map.getCenter().latitude);
-          });
+        map.addControl(
+            new MapboxDirections({
+                accessToken: mapboxgl.accessToken
+            }),
+            'top-left'
+        ).on("result", (result) => {console.log(result.place_name)})
+    
 
-        return () => map.remove()  
+        
+
+          
+
+        
     }, [])
 
     
@@ -51,7 +63,6 @@ const Interface = () => {
     return(
         <div>
              <div className="Interface" ref={interfaceRef}/>
-             <UserInput successPosition={successPosition}/>
         </div>
     )
 }
