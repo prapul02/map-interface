@@ -19,10 +19,10 @@
 }
 
 .Box{
-  margin-top: 10px;
-  margin-left: 150px;
-  width: 1137px;
-  height: 670px;
+  margin-top: 55px;
+  margin-left: 225px;
+  width: 1000px;
+  height: 570px;
   background: #074770 0% 0% no-repeat padding-box;
   border-radius: 36px;
   opacity: 1;
@@ -83,3 +83,4 @@ background: #FFFFFF 0% 0% no-repeat padding-box;
 border-radius: 21px;
 opacity: 1;
 }
+

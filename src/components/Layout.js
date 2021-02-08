@@ -16,9 +16,10 @@ const Layout = (props) => {
             <input type="text" id="loname" className="longname" name="loname"/>
             <input type="submit" className="add" value="Add"/>
                 <Interface/>
+            
             </div>
             
-            <UserInput/>
+            
         </div>
     )
 }
